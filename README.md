@@ -12,6 +12,7 @@ This is simple plugin that clear all cloudfront cache if you publish posts.
 $ cd /path/to/wordpress/wp-content/plugins
 $ git clone git@github.com:amimoto-ami/c3-cloudfront-clear-cache.git
 $ cd c3-cloudfront-clear-cache
+$ composer install
 ```
 
 ## Adding your configuration through env vars

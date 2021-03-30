@@ -1,19 +1,23 @@
 <?php
 /*
  * Plugin Name: C3 Cloudfront Cache Controller
- * Version: 5.5.1
- * Plugin URI:https://github.com/amimoto-ami/c3-cloudfront-clear-cache
+ * Version: 6.0.0
+ * Plugin URI:https://github.com/humanmade/c3-cloudfront-clear-cache
  * Description: Manage CloudFront Cache and provide some fixtures.
- * Author: hideokamoto
- * Author URI: https://wp-kyoto.net/
+ * Author: hideokamoto and Human Made
+ * Author URI: https://humanmade.com
  * Text Domain: c3-cloudfront-clear-cache
  * @package c3-cloudfront-clear-cache
  */
-
 define( 'C3_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'C3_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'C3_PLUGIN_ROOT', __FILE__ );
 
+if ( file_exists( ABSPATH . "../vendor/autoload.php" ) ) {
+	require_once( ABSPATH . '../vendor/autoload.php' );
+} else if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once( __DIR__ . '/vendor/autoload.php' );
+}
 // fixtures
 require_once( __DIR__ . '/module/model/fixtures/wp_is_mobile.php' );
 require_once( __DIR__ . '/module/model/fixtures/avoid_preview_cache.php' );
@@ -25,10 +29,7 @@ function c3_get_aws_sdk_version() {
 	if ( class_exists('\\Aws\\CloudFront\\CloudFrontClient') ) {
 		return c3_get_loaded_aws_sdk_version();
 	}
-	if ( c3_is_later_than_php_55() ) {
-		return 'v3';
-	}
-	return 'v2';
+	return 'v3';
 }
 
 function c3_is_later_than_php_55() {
