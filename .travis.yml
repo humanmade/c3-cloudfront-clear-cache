@@ -4,6 +4,10 @@ notifications:
   on_success: never
   on_failure: change
 
+branches:
+   only:
+     - master
+
 php:
   - 7.3
   - 7.4
