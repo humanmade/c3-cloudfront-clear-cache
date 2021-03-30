@@ -8,7 +8,7 @@ Stable tag: 5.5.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-This is simple plugin that clear all cloudfront cache if you publish posts.
+This is simple plugin that clear all cloudfront cache if you publish posts. It requires PHP 7.3+.
 
 == Description ==
 
