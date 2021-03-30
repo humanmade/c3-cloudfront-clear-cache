@@ -32,14 +32,6 @@ function c3_get_aws_sdk_version() {
 	return 'v3';
 }
 
-function c3_is_later_than_php_55() {
-	$is_later_than_55 = true;
-	if ( version_compare( phpversion(), '5.5', '<') ) {
-		$is_later_than_55 = false;
-	}
-	return apply_filters( 'c3_select_aws_sdk', $is_later_than_55 );
-}
-
 class C3_Controller {
 	private $base;
 	private static $instance;
