@@ -1,6 +1,6 @@
 {
     "name": "humanmade/c3-cloudfront-clear-cache",
-    "description": "Modernised fork of a simple plugin that clear all cloudfront cache if you publish posts.",
+    "description": "Modernised fork of a simple plugin that clears all CloudFront caches if you publish posts.",
     "version": "6.0.0",
     "license": "GPL-3.0-or-later",
     "type": "wordpress-plugin",
