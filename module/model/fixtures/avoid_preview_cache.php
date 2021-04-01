@@ -3,8 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-if ( ! defined( 'C3_AVOID_CACHE_COOKEY_KEY' ) ) {
-	define( 'C3_AVOID_CACHE_COOKEY_KEY', 'wordpress_loginuser_last_visit' );
+if ( ! defined( 'C3_AVOID_CACHE_COOKIE_KEY' ) ) {
+	define( 'C3_AVOID_CACHE_COOKIE_KEY', 'wordpress_loginuser_last_visit' );
 }
 
 /**
@@ -16,7 +16,12 @@ if ( ! defined( 'C3_AVOID_CACHE_COOKEY_KEY' ) ) {
 add_action( 'plugins_loaded', function() {
 	if ( is_user_logged_in() ) {
 		$cookie_path = preg_replace( '#^https?://[^/]+/?#','/',home_url( '/' ) );
-		setcookie( C3_AVOID_CACHE_COOKEY_KEY, time(), 0, $cookie_path );
+		setcookie( C3_AVOID_CACHE_COOKIE_KEY, time(), [
+			'expires'  => 0,
+			'samesite' => 'None',
+			'secure'   => true,
+			'path'     => $cookie_path,
+		] );
 	}
 } );
 
@@ -42,5 +47,10 @@ register_deactivation_hook( C3_PLUGIN_ROOT, 'c3_unset_avoid_cache_cookie' );
  */
 function c3_unset_avoid_cache_cookie() {
 	$cookie_path = preg_replace( '#^https?://[^/]+/?#','/',home_url( '/' ) );
-	setcookie( C3_AVOID_CACHE_COOKEY_KEY, '', time() - 1800, $cookie_path );
+	setcookie( C3_AVOID_CACHE_COOKIE_KEY, '', [
+		'expires' => time() - 1800,
+		'samesite' => 'None',
+		'secure'   => true,
+		'path'     => $cookie_path
+	] );
 }
